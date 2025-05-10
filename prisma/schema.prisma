@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.sqlite"
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String?
+  lastName      String?
+  email         String?
+  accountOwner  Boolean   @default(false)
+  locale        String?
+  collaborator  Boolean?  @default(false)
+  emailVerified Boolean?  @default(false)
+}
+
+model ApiSetting {
+  id          Int      @id @default(autoincrement())
+  apiEndpoint String
+  format      String
+  SKU         String
+  Stock       String
+  createdAt   DateTime @default(now())
+}
+
+model Setting {
+  id          Int      @id @default(autoincrement())
+  apiEndpoint String
+  format      String
+  SKU         String
+  Stock       String
+  createdAt   DateTime @default(now())
+}
+
+model history {
+  id         Int     @id @default(autoincrement())
+  postType   String
+  startedAt  DateTime @default(now())
+  published  String?
+  Status     String?   
+  logDetails String?
+  logs       LogDetail[] @relation("historyLogs") // One-to-many relation
+  sessionId   String   @default("default_session") 
+}
+
+model LogDetail {
+  id         Int      @id @default(autoincrement())
+  historyId  Int
+  sku        String   // SKU of the synced item
+  stock      Int?     // Stock count if applicable
+  message    String   // Success or failure message
+  status     String   // "Success", "Failed"
+  timestamp  DateTime @default(now())
+
+  history    history @relation("historyLogs", fields: [historyId], references: [id], onDelete: Cascade)
+}
