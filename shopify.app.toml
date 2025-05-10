@@ -3,7 +3,7 @@
 client_id = "4f45521308c9ce4c239f53c96ffa2cc0"
 name = "SYNC APP 2.0"
 handle = "sync-app-2-0"
-application_url = "https://ferry-analyze-zus-mouth.trycloudflare.com"
+application_url = "https://korean-fred-regulatory-breed.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_files,read_inventory,read_locations,read_products,write_inventory
 
 [auth]
 redirect_urls = [
-  "https://ferry-analyze-zus-mouth.trycloudflare.com/auth/callback",
-  "https://ferry-analyze-zus-mouth.trycloudflare.com/auth/shopify/callback",
-  "https://ferry-analyze-zus-mouth.trycloudflare.com/api/auth/callback"
+  "https://korean-fred-regulatory-breed.trycloudflare.com/auth/callback",
+  "https://korean-fred-regulatory-breed.trycloudflare.com/auth/shopify/callback",
+  "https://korean-fred-regulatory-breed.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

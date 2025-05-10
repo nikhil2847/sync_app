@@ -23,7 +23,7 @@
     "node": "^18.20 || ^20.10 || >=21.0.0"
   },
   "dependencies": {
-    "@prisma/client": "^6.8.0-dev.5",
+    "@prisma/client": "^6.7.0",
     "@remix-run/dev": "^2.7.1",
     "@remix-run/node": "^2.15.2",
     "@shopify/app-bridge": "^3.7.10",
@@ -58,7 +58,8 @@
     "eslint": "^8.42.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.2.4",
-    "prisma": "^6.8.0-dev.5",
+    "prisma": "^6.7.0",
+    "remix": "^2.16.6",
     "typescript": "^5.2.2",
     "vite": "^5.1.3"
   },
