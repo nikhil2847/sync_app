@@ -18,10 +18,10 @@ module.exports = {
   dev: { port: process.env.HMR_SERVER_PORT || 8002 },
   future: {
     // v7_relativeSplatPath: true,
-    v3_fetcherPersist: true,
-    v3_lazyRouteDiscovery: true,
-    v3_relativeSplatPath: true,
-    v3_singleFetch: true,
-    v3_throwAbortReason: true,
+    v7_fetcherPersist: true,
+    v7_lazyRouteDiscovery: true,
+    v7_relativeSplatPath: true,
+    v7_singleFetch: true,
+    v7_throwAbortReason: true,
   },
 };
