@@ -1,19 +1,17 @@
+
+
 // import { authenticate } from "../shopify.server";
 // import crypto from "crypto";
 // import { json } from "@remix-run/node"; // Use Remix's response utilities
 
-// // const SHOPIFY_SECRET = process.env.SHOPIFY_API_SECRET;
 // const SHOPIFY_SECRET = '4f45521308c9ce4c239f53c96ffa2cc0';
+
 // export const action = async ({ request }) => {
-//   // const { shop, topic } = await authenticate.webhook(request);
-//   // const { topic, shop, session } = await authenticate.webhook(request);
-//   // Implement handling of mandatory compliance topics
-//   // See: https://shopify.dev/docs/apps/build/privacy-law-compliance
-//   // console.log(`Received ${topic} webhook for ${shop}`);
-//   // console.log(JSON.stringify(payload, null, 2));
-
-
 //   const hmacHeader = request.headers.get("X-Shopify-Hmac-SHA256");
+//   if (!hmacHeader) {
+//     return json({ error: "Missing HMAC header" }, { status: 400 });
+//   }
+
 //   const rawBody = await request.text();
 
 //   // Compute the HMAC
@@ -32,12 +30,10 @@
 //   return json({ success: true });
 // };
 
-
-import { authenticate } from "../shopify.server";
 import crypto from "crypto";
-import { json } from "@remix-run/node"; // Use Remix's response utilities
+import { json } from "@remix-run/node";
 
-const SHOPIFY_SECRET = '4f45521308c9ce4c239f53c96ffa2cc0';
+const SHOPIFY_SECRET = '4f45521308c9ce4c239f53c96ffa2cc0'; // Ideally, use process.env here.
 
 export const action = async ({ request }) => {
   const hmacHeader = request.headers.get("X-Shopify-Hmac-SHA256");
@@ -59,6 +55,13 @@ export const action = async ({ request }) => {
   }
 
   console.log("Webhook verified successfully!");
+
+  // ✅ Dynamically import server-only module here (after verification)
+  const { authenticate } = await import("../shopify.server");
+
+  // Optional: use Shopify logic after this point
+  // const { topic, shop, session } = await authenticate.webhook(request);
+  // console.log(`Received ${topic} webhook for ${shop}`);
 
   return json({ success: true });
 };
