@@ -1,9 +1,11 @@
 import { json, redirect } from "@remix-run/node";
 import { Form, useLoaderData } from "@remix-run/react";
-import { login } from "../../shopify.server";
+// import { login } from "../../shopify.server";
 import styles from "./styles.module.css";
 
 export const loader = async ({ request }) => {
+  const { login } = await import("../../shopify.server"); // 👈 Import inside server function
+  return login(request);
   const url = new URL(request.url);
   const shop = url.searchParams.get("shop");
 
