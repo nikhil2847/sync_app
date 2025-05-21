@@ -12,6 +12,11 @@ import jwt from "jsonwebtoken";
 
 // const app = express();
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
+const app = express();
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`App is running on port ${port}`);
+});
 export const loader = async ({ request }) => {
   const authHeader = request.headers.get("Authorization");
 
