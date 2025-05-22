@@ -18,11 +18,20 @@ app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
 
+// Root route
 app.get('/', (req, res) => {
   const shop = req.query.shop;
   if (!shop) {
     return res.status(400).send('Missing shop query parameter.');
   }
+
+  res.send(`<html>
+    <head><title>Shopify App</title></head>
+    <body>
+      <h1>Hello ${shop}, your app is working!</h1>
+    </body>
+  </html>`);
+});
 export const loader = async ({ request }) => {
   const authHeader = request.headers.get("Authorization");
 
