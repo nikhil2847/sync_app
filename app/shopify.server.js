@@ -9,10 +9,6 @@ import { restResources } from "@shopify/shopify-api/rest/admin/2024-07";
 import prisma from "./db.server";
 import express from "express";
 import jwt from "jsonwebtoken";
-import { createRequestHandler } from "@remix-run/express";
-import { installGlobals } from "@remix-run/node";
-
-installGlobals();
 
 // const app = express();
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
@@ -21,18 +17,6 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
-
-// Serve static files if needed
-app.use(express.static("public"));
-
-// Handle all other routes with Remix
-app.all(
-  "*",
-  createRequestHandler({
-    build: await import("./build"), // Adjust path if needed
-    mode: process.env.NODE_ENV,
-  })
-);
 
 
 export const loader = async ({ request }) => {
