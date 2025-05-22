@@ -17,6 +17,12 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
+
+app.get('/', (req, res) => {
+  const shop = req.query.shop;
+  if (!shop) {
+    return res.status(400).send('Missing shop query parameter.');
+  }
 export const loader = async ({ request }) => {
   const authHeader = request.headers.get("Authorization");
 
