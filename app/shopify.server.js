@@ -18,60 +18,18 @@ app.listen(port, () => {
   console.log(`App is running on port ${port}`);
 });
 
-app.get('/', (req, res) => {
-  const shop = req.query.shop;
+app.use(express.static('public'));
 
-  if (!shop) {
-    return res.status(400).send('Missing shop query parameter');
-  }
-
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>Shopify Embedded App</title>
-        <script src="https://unpkg.com/@shopify/app-bridge@3"></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', function() {
-            const AppBridge = window['app-bridge'];
-            const createApp = AppBridge.default;
-            const { Redirect } = AppBridge.actions;
-
-            const app = createApp({
-              apiKey: '${process.env.SHOPIFY_API_KEY}',
-              shopOrigin: '${shop}',
-              host: new URLSearchParams(window.location.search).get("host"),
-              forceRedirect: true,
-            });
-
-            // OPTIONAL: redirect to embedded route (e.g. /app)
-            const redirect = Redirect.create(app);
-            redirect.dispatch(Redirect.Action.APP, '/app?shop=${shop}');
-          });
-        </script>
-      </head>
-      <body>
-        <h1>Loading embedded app...</h1>
-      </body>
-    </html>
-  `);
-});
-
-app.get('/app', (req, res) => {
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>My Shopify App</title>
-      </head>
-      <body>
-        <h1>Welcome to the embedded app UI</h1>
-        <p>Your Shopify store is: ${req.query.shop}</p>
-      </body>
-    </html>
-  `);
-});
-
+// Let Remix handle all routes (important)
+app.all(
+  '*',
+  createRequestHandler({
+    getLoadContext() {
+      // Optional: pass custom context to loaders
+      return {};
+    },
+  })
+);
 
 export const loader = async ({ request }) => {
   const authHeader = request.headers.get("Authorization");
