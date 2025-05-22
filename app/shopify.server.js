@@ -9,6 +9,7 @@ import { restResources } from "@shopify/shopify-api/rest/admin/2024-07";
 import prisma from "./db.server";
 import express from "express";
 import jwt from "jsonwebtoken";
+import { createRequestHandler } from '@remix-run/express';
 
 // const app = express();
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
