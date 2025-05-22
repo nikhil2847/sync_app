@@ -3,7 +3,7 @@
 client_id = "4f45521308c9ce4c239f53c96ffa2cc0"
 name = "SYNC APP 2.0"
 handle = "sync-app-2-0"
-application_url = "https://top-entrance-gb-cant.trycloudflare.com"
+application_url = "https://sync-app-tzgg.onrender.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_files,read_inventory,read_locations,read_products,write_inventory
 
 [auth]
 redirect_urls = [
-  "https://top-entrance-gb-cant.trycloudflare.com/auth/callback",
-  "https://top-entrance-gb-cant.trycloudflare.com/auth/shopify/callback",
-  "https://top-entrance-gb-cant.trycloudflare.com/api/auth/callback"
+  "https://sync-app-tzgg.onrender.com/auth/callback",
+  "https://sync-app-tzgg.onrender.com/auth/shopify/callback",
+  "https://sync-app-tzgg.onrender.com/api/auth/callback"
 ]
 
 [webhooks]
